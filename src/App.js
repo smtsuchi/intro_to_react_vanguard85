@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import About from './views/About';
 import Home from './views/Home';
+import IG from './views/IG';
+import News from './views/News';
 
 export default class App extends Component {
   constructor() {
@@ -11,20 +13,20 @@ export default class App extends Component {
     this.state = {
       name: 'shoha',
       age: 9000,
-      people: ['andrew','david','anthony','tyler','tommy','april','christopher','dylan','jamia']
+      people: ['andrew', 'david', 'anthony', 'tyler', 'tommy', 'april', 'christopher', 'dylan', 'jamia']
     }
   }
 
   happyBirthday = () => {
     this.setState(
-      {age: this.state.age + 1}
+      { age: this.state.age + 1 }
     )
   };
 
-  componentDidMount () {
+  componentDidMount() {
     // console.log("MAIN APP: I have mounted")
   }
-  
+
 
 
 
@@ -35,12 +37,16 @@ export default class App extends Component {
     return (
       <div>
         <Navbar myName={this.state.name} />
-        <h1>Hi, I am {this.state['name']} and my age is {this.state.age}</h1>
-        <button onClick={()=>this.happyBirthday()}>Happy Birthday</button>
-        <Routes>
-          <Route path='/' element={<Home name = { this.state.name}/>}/>
-          <Route path='/about' element={<About myClass={this.state.people}/>}/>         
-        </Routes>
+        {/* <h1>Hi, I am {this.state['name']} and my age is {this.state.age}</h1>
+        <button onClick={()=>this.happyBirthday()}>Happy Birthday</button> */}
+        <div className='container d-flex justify-content-center mt-4'>
+          <Routes>
+            <Route path='/' element={<Home name={this.state.name} />} />
+            <Route path='/about' element={<About myClass={this.state.people} />} />
+            <Route path='/news' element={<News />} />
+            <Route path='/instagram' element={<IG />} />
+          </Routes>
+        </div>
       </div>
     )
   }
