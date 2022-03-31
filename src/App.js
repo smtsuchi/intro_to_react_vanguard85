@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import About from './views/About';
+import Contact from './views/Contact';
 import Home from './views/Home';
 import IG from './views/IG';
 import News from './views/News';
+import Shop from './views/Shop';
+import SinglePost from './views/SinglePost';
+import SingleProduct from './views/SingleProduct';
 
 export default class App extends Component {
   constructor() {
@@ -45,6 +49,10 @@ export default class App extends Component {
             <Route path='/about' element={<About myClass={this.state.people} />} />
             <Route path='/news' element={<News />} />
             <Route path='/instagram' element={<IG />} />
+            <Route path='/instagram/:postId' element={<SinglePost />} />
+            <Route path='/shop' element={<Shop />} />
+            <Route path='/shop/:productId' element={<SingleProduct />} />
+            <Route path='/contact' element={<Contact />} />
           </Routes>
         </div>
       </div>

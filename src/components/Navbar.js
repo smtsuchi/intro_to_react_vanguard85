@@ -20,10 +20,16 @@ export default class Navbar extends Component {
                 <Link className="nav-link" to="/about">About</Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" to="/contact">Contact</Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/news">News</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/instagram">Instagram</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/shop">Shop</Link>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
