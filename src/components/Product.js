@@ -1,7 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Product({ product }) {
+export default function Product({ addToCart, product, user }) {
+    const addToCartAPI = async (product) => {
+        const res = await fetch('http://localhost:5000/api/cart/add', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token": user.token
+            },
+            body: JSON.stringify({product_id: product.id})
+        });
+        const data = await res.json();
+        console.log(data)
+    };
     return (
         <div className="card" style={{width: "18rem"}}>
             <ul className="list-group list-group-flush">
@@ -16,7 +28,7 @@ export default function Product({ product }) {
                     </Link>
                 </li>
                 <li className="list-group item">
-                    <a href="/" className="btn btn-primary">Add To Cart</a>
+                    <button onClick={()=>{addToCartAPI(product);addToCart(product)}} className="btn btn-primary">Add To Cart</button>
                 </li>
             </ul>
         </div>

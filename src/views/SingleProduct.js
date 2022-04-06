@@ -27,6 +27,19 @@ class SingleProduct extends Component {
         }
     }
 
+    addToCartAPI = async (product) => {
+        const res = await fetch('http://localhost:5000/api/cart/add', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token": this.props.user.token
+            },
+            body: JSON.stringify({product_id: product.id})
+        });
+        const data = await res.json();
+        console.log(data)
+    };
+
 
     render() {
         if (this.state.redirect) {
@@ -43,10 +56,10 @@ class SingleProduct extends Component {
                     <h5 className="card-title">{product.product_name}</h5>
                     <p className="card-text">{product.description}</p>
                 </div>
-                <form method="POST" action="/">
-                    <input className="d-none" type="text" name='product_id' value={product.id} />
-                    <button type='submit' className="btn btn-primary">Add To Cart</button>
-                </form>
+                
+                    
+                <button type='submit' className="btn btn-primary" onClick={()=>{this.addToCartAPI(product); this.props.addToCart(product)}}>Add To Cart</button>
+                
             </div>
         )
     }

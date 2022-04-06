@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import Post from '../components/Post';
 
 export default class IG extends Component {
@@ -22,6 +23,7 @@ export default class IG extends Component {
     render() {
         return (
             <div className='justify-content-around'>
+                <Link to='/instagram/post/create'>Create</Link>
                 {this.state.posts.map((p, i)=><Post key={i} post={p}/>)}
             </div>
         )

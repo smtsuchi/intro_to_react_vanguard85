@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css'
+import './Navbar.css';
+import { FaShoppingCart } from 'react-icons/fa';
 
-export default class Navbar extends Component {
-  render() {
+export default function Navbar ({ currentUser, logMeOut, cart, sumTotalCart }) {
+
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light my-nav">
         <div className="container-fluid">
@@ -31,8 +32,11 @@ export default class Navbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/shop">Shop</Link>
               </li>
-              {this.props.currentUser.username ?
-                <li className="nav-item" onClick={()=>this.props.logMeOut()}>
+              <li className="nav-item">
+                <Link className="nav-link" to="/stripe/shop">Stripe</Link>
+              </li>
+              {currentUser.username ?
+                <li className="nav-item" onClick={() => logMeOut()}>
                   <Link className="nav-link" to="/login">Log Out</Link>
                 </li>
                 :
@@ -46,7 +50,13 @@ export default class Navbar extends Component {
                 </>
               }
               <li className="nav-item">
-                <a className="nav-link disabled" href="/" tabIndex="-1" aria-disabled="true">{this.props.currentUser.username}</a>
+                <Link className="nav-link" to="/cart">
+                  <FaShoppingCart />
+                  {cart.length} | {sumTotalCart(cart)}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link disabled" href="/" tabIndex="-1" aria-disabled="true">{currentUser.username}</a>
               </li>
             </ul>
             <form className="d-flex">
@@ -57,5 +67,5 @@ export default class Navbar extends Component {
         </div>
       </nav>
     )
-  }
+
 }
